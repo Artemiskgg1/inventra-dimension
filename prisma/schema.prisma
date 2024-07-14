@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-    provider  = "postgresql"
-    url  	    = env("DATABASE_URL")
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model VerificationToken {
@@ -60,15 +61,83 @@ model User {
     image         String?
     createdAt     DateTime    @default(now()) @map(name: "created_at")
     updatedAt     DateTime    @updatedAt @map(name: "updated_at")
-    // posts         Post[]
-    // saved         SavedPost[]
-    // likes         Like[]
-    // comments      Comment[]
-    // followedBy    Follows[]   @relation("following")
-    // following     Follows[]   @relation("follower")
+    posts         Post[]
+    saved         SavedPost[]
+    likes         Like[]
+    comments      Comment[]
+    followedBy    Follows[]   @relation("following")
+    following     Follows[]   @relation("follower")
     accounts      Account[]
     sessions      Session[]
 
     @@map(name: "users")
 }
 
+model Follows {
+    follower    User   @relation("follower", fields: [followerId], references: [id])
+    followerId  String
+    following   User   @relation("following", fields: [followingId], references: [id])
+    followingId String
+
+    @@id([followerId, followingId])
+    @@index([followerId])
+    @@index([followingId])
+}
+
+model Post {
+    id        String      @id @default(cuid())
+    createdAt DateTime    @default(now())
+    updatedAt DateTime    @updatedAt
+    caption   String?
+    fileUrl   String      @unique
+    likes     Like[]
+    savedBy   SavedPost[]
+    comments  Comment[]
+    user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    String      @map("user_id")
+
+    @@index([userId])
+}
+
+model SavedPost {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+    postId    String
+    userId    String   @map("user_id")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([postId, userId])
+    @@index([userId])
+}
+
+model Like {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+    postId    String
+    userId    String   @map("user_id")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([postId, userId])
+    @@index([userId])
+}
+
+model Comment {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    body      String
+    post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+    postId    String
+    userId    String   @map("user_id")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([postId])
+    @@index([userId])
+}
