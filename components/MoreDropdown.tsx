@@ -23,6 +23,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Switch } from "./ui/switch";
+import { signOut } from "next-auth/react";
 
 function MoreDropdown() {
   const [showModeToggle, setShowModeToggle] = useState(false);
@@ -93,10 +94,10 @@ function MoreDropdown() {
               <p>Switch appearance</p>
             </DropdownMenuItem>
 
-            {/* <DropdownMenuItem className="menuItem" onClick={() => signOut()}>
+            <DropdownMenuItem className="menuItem" onClick={() => signOut()}>
               <LogOut size={20} />
               <p>Log out</p>
-            </DropdownMenuItem> */}
+            </DropdownMenuItem>
           </>
         )}
 
