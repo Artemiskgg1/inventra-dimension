@@ -1,8 +1,16 @@
-import React from "react";
+import { fetchPosts } from "@/lib/data";
+import Post from "./Post";
 
-function Posts() {
-  // implement data fetching here
-  return <>{/* Map througn the posts */}</>;
+async function Posts() {
+  const posts = await fetchPosts();
+
+  return (
+    <>
+      {posts.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
+    </>
+  );
 }
 
 export default Posts;
