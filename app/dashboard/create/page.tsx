@@ -21,7 +21,6 @@ import {
 import { Input } from "@/components/ui/input";
 import useMount from "@/hooks/useMount";
 import { createPost } from "@/lib/actions";
-// import { createPost } from "@/lib/actions";
 import { CreatePost } from "@/lib/schemas";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";

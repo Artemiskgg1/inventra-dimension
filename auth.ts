@@ -2,7 +2,6 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth, { getServerSession, type NextAuthOptions } from "next-auth";
-
 import {
   GetServerSidePropsContext,
   NextApiRequest,
@@ -23,7 +22,6 @@ export const config = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
       if (token) {
@@ -71,6 +69,7 @@ export const config = {
 
 export default NextAuth(config);
 
+// Use it in server contexts
 export function auth(
   ...args:
     | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
