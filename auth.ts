@@ -70,7 +70,6 @@ export const config = {
 
 export default NextAuth(config);
 
-// Use it in server contexts
 export function auth(
   ...args:
     | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
