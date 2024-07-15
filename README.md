@@ -1,5 +1,11 @@
 ![inventra-dimension](https://socialify.git.ci/iynes/inventra-dimension/image?description=1&font=Raleway&forks=1&language=1&name=1&owner=1&pattern=Brick%20Wall&stargazers=1&theme=Dark)
 
+# Myntra "We for She" Hackathon Project
+
+## Problem Statement
+
+**Social Shopping Integration:** Integrate social media functionalities and user-generated content, such as influencer collaborations, customer reviews, and shoppable posts, to create an interactive and immersive shopping experience that resonates with fast fashion enthusiasts, positioning Myntra as the go-to destination, driving customer growth and conversion.
+
 ## Getting Started
 
 First, run the development server:
