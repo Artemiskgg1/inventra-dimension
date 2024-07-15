@@ -34,7 +34,7 @@ const links = [
     icon: MessageCircle,
   },
   {
-    name: "Notifications",
+    name: "Coupon Redeem",
     href: "/dashboard/notifications",
     icon: Heart,
     hideOnMobile: true,
