@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![inventra-dimension](https://socialify.git.ci/iynes/inventra-dimension/image?description=1&font=Raleway&forks=1&language=1&name=1&owner=1&pattern=Brick%20Wall&stargazers=1&theme=Dark)
 
 ## Getting Started
 
